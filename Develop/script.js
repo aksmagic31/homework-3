@@ -12,12 +12,15 @@ const numbers = ['1','2','3','4','5','6','7','8','9','0'];
 
 const specialCharacters = [ "~", "!", "@", "#", "$", "%","^","&","*","(",")"];
 
+// get a var to store the password on global scope
+var thePassword = "";
+
 
 //generateBtn.addEventListener("click", generatePassword);
   // create a function for generating password 
 function generatePassword ()
 {
-// prompt for length and options for password 
+// prompt for length and options for password and check logs
 var characterLength = window.prompt("how many keys between 8 to 128 you want for your password","8");
 console.log(characterLength);
 
@@ -37,20 +40,21 @@ console.log(specialChaYes);
 
 if (characterLength < 8 || characterLength > 128)
 {
-  displayMessage("error", "length has to be between 8 and 128 characters");
+  window.alert("length has to be between 8 and 128 characters");
 }
 
 //  check to see at least one catagory is selected
 
 else if (upperCaseYes == false && lowerCaseYes == false && numberYes == false && specialChaYes == false){
 
-  displayMessage("error","has to be at least one kind of catagory for your password");
+  window.alert("has to be at least one kind of catagory for your password");
 }
 
 else {
-console.log("line54");
 
- //put all the possible characters in a new array
+
+ //put all the possible characters in a new array based on user selection
+
 
 let allPossibleChar = [];
 
@@ -76,11 +80,18 @@ let allPossibleChar = [];
  }
  console.log(allPossibleChar);
 
+ // generates a password by randoming the possible characters with length of password user selected
+
  for (let i = 0; i < characterLength; i++)
  {
-  return allPossibleChar[Math.floor(Math.random() * characterLength)];
-  
+  let chosenCharacter = allPossibleChar[Math.floor(Math.random() * allPossibleChar.length)];
+  thePassword += chosenCharacter;
+  console.log(chosenCharacter);
+  console.log(thePassword);
  }
+
+ //gives the result 
+ return thePassword;
 }
 };
 
